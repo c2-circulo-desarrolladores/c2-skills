@@ -2,10 +2,6 @@
 
 Esta es una encuesta para evaluar los fundamentos técnicos del desarrollador.
 
-Idealmente deberías conocer todos los conceptos. 
-Si no los conoces, debería un objetivo a corto plazo.
-Dominarlos
-
 # Cómo responder la encuesta
 
 Se le mostrará una serie de conceptos de Python. Marca aquellos que conoces y haz aplicado alguna vez.
@@ -15,50 +11,57 @@ Se le mostrará una serie de conceptos de Python. Marca aquellos que conoces y h
 | Valor | Significado |
 |---|---|
 | 0 | No lo conozco |
-| 1 | Lo conozco |
-| 2 | Lo domino |
+| 1 | Básico |
+| 2 | Intermedio |
+| 3 | Avanzado |
 
+## Python
 
-Estas librerías tienen un puntaje oculto depend
+### Fundamentos
 
-# Información General
+| Valor | Concepto |
+|---|---|
+|  | Variables y tipos de datos (str, int, float, list, dict, tuple, set) |
+|  | Control de flujo (if/elif/else, for, while) |
+|  | Funciones básicas (def, parámetros, return, docstrings)
 
-- Nombre:
-- Rol principal:
-- Años de experiencia:
-- País / Zona horaria:
-- GitHub:
-- LinkedIn:
+### Paradigmas
 
-## Python Fundamentals
+| Valor | Concepto |
+|---|---|
+|  | Programación funcional básica (list/dict comprehension, map, filter, functools) |
+|  | Programación funcional avanzada (args, kwargs, decoradores, lambdas)
+|  | Programación orientada a objetos básica (clases, herencia, composición) |
+|  | Programación orientada a objetos avanzada (properties, static methods, class methods)
+|  | Programación asíncrona (asyncio, async def, await)
 
-- [ ] Variables y tipos de datos (str, int, float, list, dict, tuple, set)
-- [ ] Control de flujo (if/elif/else, for, while)
-- [ ] Funciones básicas (def, parámetros, return, docstrings)
-- [ ] Programación funcional (list/dict comprehension, map, filter, functools)
-- [ ] Programación orientada a objetos básica (clases, herencia, composición)
-- [ ] Manejo de excepciones (try/except/finally, errores)
-- [ ] File I/O (lectura/escritura de archivos)
-- [ ] Type hints y validación (typing, mypy)
-- [ ] Estructuras de datos tipadas (dataclasses, Pydantic BaseModel, Enums)
-- [ ] Módulos y paquetes (import, __init__.py, pyproject.toml)
-- [ ] Virtual environments (uv, venv, dependencias)
-- [ ] Testing básico (pytest)
-- [ ] Guardar logs (logging en lugar de print)
+### Buenas prácticas
 
-# Python Extras
+| Valor | Concepto |
+|---|---|
+|  | File I/O (lectura/escritura de archivos) |
+|  | Manejo de excepciones (try/except/finally, errores) |
+|  | Estructuras de datos tipadas (dataclasses, Pydantic BaseModel, Enums) |
+|  | Guardar logs (logging en lugar de print) |
 
-- [ ] Funciones avanzadas (args, kwargs, decoradores, lambdas)
-- [ ] OOP avanzado (properties, static methods, class methods)
-- [ ] Programación asíncrona (asyncio, async def, await)
+### Librerías
 
-# Open Source Fundamentals
+| Valor | Concepto |
+|---|---|
+|  | Módulos y paquetes (import, __init__.py, pyproject.toml) |
+|  | Type hints y validación (typing, mypy) |
+|  | Virtual environments (uv, venv, dependencias) |
+|  | Testing básico (pytest) |
 
-- [ ] Git básico (clone, add, commit, push, pull, checkoout/switch, merge/rebase)
-- [ ] Github workflow (fork, branch, pull request, issues)
-- [ ] README.md (documentación del proyecto)
-- [ ] Licencias open source (MIT, GPL, Apache, BSD)
-- [ ] Semantic Versioning (versionado semántico)
-- [ ] Code review (revisar y recibir feedback de código)
-- [ ] Issue tracking (reportar bugs, proponer features)
-- [ ] Documentación (docstrings, wikis, docs/)
+## Open Source
+
+### Fundamentals
+
+| Valor | Concepto |
+|---|---|
+|  | Git workflow (clone, add, commit, push, pull, checkout/switch, merge/rebase) |
+|  | Github workflow (fork, branch, pull request, issues) |
+|  | Github actions
+|  | README.md (documentación del proyecto) |
+|  | Semantic Versioning (versionado semántico) |
+|  | Code review (revisar y recibir feedback de código) |
