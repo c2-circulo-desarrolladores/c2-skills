@@ -1,7 +1,7 @@
 import re
 from pathlib import Path
 
-from models import MemberSkills, Skill, SkillSection
+from skills._models import MemberSkills, Skill, SkillSection
 
 
 def parse_markdown(md_path: Path) -> list[SkillSection]:

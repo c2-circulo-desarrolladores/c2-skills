@@ -1,4 +1,4 @@
-from dashboard.main import main
+from skills.main import main
 
 if __name__ == "__main__":
     main()

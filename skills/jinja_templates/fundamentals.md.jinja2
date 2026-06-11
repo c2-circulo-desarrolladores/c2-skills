@@ -1,0 +1,24 @@
+# Encuesta de fundamentos
+
+Esta es una encuesta para evaluar los fundamentos técnicos del desarrollador.
+
+# Cómo responder la encuesta
+
+Se le mostrará una serie de conceptos de Python. Marca aquellos que conoces y haz aplicado alguna vez.
+
+# Escala
+
+| Valor | Significado |
+|---|---|
+| 0 | No lo conozco |
+| 1 | Básico |
+| 2 | Intermedio |
+| 3 | Avanzado |
+
+{% for encuesta in data %}
+## {{encuesta.encuesta}}
+
+{% for seccion in encuesta.seccion %}
+### {{seccion}}
+{% endfor %}
+{% endfor %}

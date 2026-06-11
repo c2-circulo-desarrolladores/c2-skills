@@ -1,8 +1,8 @@
-from dashboard.conf import MIEMBROS, TEMPLATES
+from skills.conf import MIEMBROS, ENCUESTAS_FINALES
 
 
 def retrieve_skills() -> None:
-    TEMPLATES / "FUNDAMENTALS.md"
+    ENCUESTAS_FINALES / "FUNDAMENTALS.md"
 
 
 def modify_skills_all() -> None:

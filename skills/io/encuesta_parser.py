@@ -1,6 +1,6 @@
 import polars as pl
 from pathlib import Path
-from dashboard.conf import MIEMBROS
+from skills.conf import MIEMBROS
 
 
 def obtener_encuestas(nombre_encuesta: str) -> list[Path]:
