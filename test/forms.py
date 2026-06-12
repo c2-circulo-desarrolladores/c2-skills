@@ -6,6 +6,8 @@ import pandas as pd
 import requests
 
 DATA_URL = "https://docs.google.com/spreadsheets/d/1SccaMN39OepYrvrGIlyjQTCetxj19noNeLaW-55WS7o/export?format=csv&id=1SccaMN39OepYrvrGIlyjQTCetxj19noNeLaW-55WS7o&gid=1447091477"
+MAIN_BRANCH = "main"
+DATA_DIR = "data"
 
 
 def load_dataframe() -> pd.DataFrame:
@@ -55,16 +57,29 @@ def setup_git_config():
 
 def process_user(user: str, user_row: pd.Series, all_columns: list):
     """Crea branch, escribe CSV con la fila del usuario y hace push."""
+    print(f"\n{'─' * 50}")
+    print(f"[user] {user}")
 
-    run(f"git checkout -b {user}")
+    # 1. Volver a main antes de crear/cambiar branch
+    run(f"git checkout {MAIN_BRANCH}")
+
+    # 2. Crear branch si no existe (local ni remote)
+    if branch_exists_remote(user):
+        print(f"    Branch '{user}' ya existe en remote. Haciendo checkout...")
+        if not branch_exists_local(user):
+            run(f"git checkout -b {user} origin/{user}")
+        else:
+            run(f"git checkout {user}")
+            run(f"git pull origin {user} --ff-only", check=False)
+    else:
+        print(f"    Creando nueva branch '{user}'...")
+        run(f"git checkout -b {user}")
 
     # 3. Crear carpeta data/ si no existe
-    os.makedirs("data", exist_ok=True)
-
-    print("making data folder")
+    os.makedirs(DATA_DIR, exist_ok=True)
 
     # 4. Escribir CSV con solo la fila del usuario
-    csv_path = os.path.join("data", f"{user}.csv")
+    csv_path = os.path.join(DATA_DIR, f"{user}.csv")
     row_df = pd.DataFrame([user_row], columns=all_columns)
     row_df.to_csv(csv_path, index=False)
     print(f"    CSV escrito: {csv_path}")
@@ -72,8 +87,17 @@ def process_user(user: str, user_row: pd.Series, all_columns: list):
     # 5. Git add + commit + push
     run(f"git add {csv_path}")
 
-    run(f'git commit -m "data: add/update {user}.csv"')
-    run(f"git push -u origin {user}")
+    # Commit solo si hay cambios staged
+    status = run("git status --porcelain", check=False)
+    if status.stdout.strip():
+        run(f'git commit -m "data: add/update {user}.csv"')
+        run(f"git push -u origin {user}")
+        print(f"    [OK] Push exitoso → origin/{user}")
+    else:
+        print(f"    Sin cambios nuevos para {user}, skip push.")
+
+    # 6. Volver a main
+    run(f"git checkout {MAIN_BRANCH}")
 
 
 def main():
@@ -105,5 +129,5 @@ def main():
             errors.append((user, str(e)))
 
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
