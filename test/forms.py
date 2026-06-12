@@ -5,9 +5,7 @@ from io import StringIO
 import pandas as pd
 import requests
 
-DATA_URL = (
-    "https://docs.google.com/spreadsheets/d/1SccaMN39OepYrvrGIlyjQTCetxj19noNeLaW-55WS7o/export?format=csv&id=1SccaMN39OepYrvrGIlyjQTCetxj19noNeLaW-55WS7o&gid=1447091477",
-)
+DATA_URL = "https://docs.google.com/spreadsheets/d/1SccaMN39OepYrvrGIlyjQTCetxj19noNeLaW-55WS7o/export?format=csv&id=1SccaMN39OepYrvrGIlyjQTCetxj19noNeLaW-55WS7o&gid=1447091477"
 
 
 def load_dataframe() -> pd.DataFrame:
@@ -81,11 +79,13 @@ def process_user(user: str, user_row: pd.Series, all_columns: list):
 def main():
     setup_git_config()
     GITHUB_COL = "user_github"
-
-    # Carga datos
     df = load_dataframe()
-
-    print(df)
+    # Valida columna
+    if GITHUB_COL not in df.columns:
+        raise ValueError(
+            f"Columna '{GITHUB_COL}' no encontrada. "
+            f"Columnas disponibles: {list(df.columns)}"
+        )
 
     # Limpia: drop nulos y espacios en user_github
     df[GITHUB_COL] = df[GITHUB_COL].astype(str).str.strip()
