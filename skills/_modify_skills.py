@@ -1,4 +1,4 @@
-from skills.conf import MIEMBROS, ENCUESTAS_FINALES
+from skills.conf import ENCUESTAS_FINALES, MIEMBROS
 
 
 def retrieve_skills() -> None:

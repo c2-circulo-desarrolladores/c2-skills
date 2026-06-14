@@ -1,8 +1,9 @@
 import plotly.graph_objects as go
 import streamlit as st
-from skills.conf import MIEMBROS
+
 from skills._models import MemberSkills, SkillSection
 from skills._parse_skills import parse_skills_all
+from skills.conf import MIEMBROS
 
 
 def calculate_progress(sections: list[SkillSection]) -> dict:
