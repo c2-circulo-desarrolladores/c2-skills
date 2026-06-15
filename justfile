@@ -17,4 +17,4 @@ format-py:
     uv run ruff check --fix . --exit-zero
 
 run:
-    uv run streamlit run skills/app/landing.py
+    uv run streamlit run skills/app/overview.py

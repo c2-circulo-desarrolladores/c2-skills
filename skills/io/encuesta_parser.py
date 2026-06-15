@@ -16,10 +16,9 @@ def obtener_encuestas(nombre_encuesta: str) -> list[Path]:
                 encontrado = True
                 break
         if not encontrado:
-            # raise FileNotFoundError(
-            #     f"El miembro '{carpeta_miembro.name.title()}' no tiene la encuesta {nombre_encuesta}"
-            # )
-            continue
+            raise FileNotFoundError(
+                f"El miembro '{carpeta_miembro.name.title()}' no tiene la encuesta {nombre_encuesta}"
+            )
 
     if not encuestas_paths:
         raise FileNotFoundError(
