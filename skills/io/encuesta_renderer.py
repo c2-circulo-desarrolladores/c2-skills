@@ -1,11 +1,11 @@
+from abc import ABC, abstractmethod
 from pathlib import Path
 from typing import Any
 
 import polars as pl
-
-from skills.conf import SOURCES, JINJA_TEMPLATES
 from jinja2 import Environment, FileSystemLoader
-from abc import ABC, abstractmethod
+
+from skills.conf import ENCUESTAS_FINALES, JINJA_TEMPLATES, SOURCES
 
 
 class JinjaRenderer(ABC):
@@ -19,16 +19,19 @@ class JinjaRenderer(ABC):
         )
 
     @abstractmethod
-    def _aggregate(self, df: pl.DataFrame) -> list[dict]: ...
+    def _aggregate(self, df: pl.DataFrame) -> pl.DataFrame: ...
 
     def _render(self, data: list[dict]) -> str:
         env = Environment(loader=FileSystemLoader(JINJA_TEMPLATES))
         return env.get_template(self.template_name).render(data=data)
 
-    def run(self) -> str:
+    def save_rendered(self, output_path: Path) -> None:
         df = self._read_source()
         data = self._aggregate(df)
-        return self._render(data)
+        # print(data)
+        with open(output_path, mode="w", encoding="utf-8") as f:
+            f.write(self._render(data.to_dicts()))
+        print(f"{self.source_file.name} rendered and saved to {output_path}")
 
 
 class FundamentalsRenderer(JinjaRenderer):
@@ -41,18 +44,18 @@ class FundamentalsRenderer(JinjaRenderer):
     }
     template_name = "fundamentals.md.jinja2"
 
-    def _aggregate(self, df: pl.DataFrame) -> list[dict]:
+    def _aggregate(self, df: pl.DataFrame) -> pl.DataFrame:
         return (
             df.group_by(["encuesta", "seccion"], maintain_order=True)
-            .agg()
+            .agg(pl.struct(["tema", "conceptos"]).alias("temas"))
             .group_by("encuesta", maintain_order=True)
-            .agg(pl.col("seccion"))
-            .to_dicts()
+            .agg(pl.struct(["seccion", "temas"]).alias("secciones"))
         )
 
 
 def main():
-    print(FundamentalsRenderer().run())
+    FundamentalsRenderer().save_rendered(ENCUESTAS_FINALES / "fundamentals_template.md")
 
 
-main()
+if __name__ == "__main__":
+    main()

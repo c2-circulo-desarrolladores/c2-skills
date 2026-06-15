@@ -4,16 +4,9 @@ set shell := ["powershell.exe", "-Command"] # Windows
 # Update pre-commit hooks
 update:
     pre-commit autoupdate
-
-# Add dev dependencies
-add-dev:
-    uv add --dev isort autoflake ruff pre-commit
-
-add-mkdocs:
-    uv add --dev mkdocs-macros-plugin mkdocs-static-i18n
      
 # Format files
-format-all:
+format-py:
     # 🧹 Removes unused imports and variables
     uv run autoflake --in-place --remove-unused-variables --remove-all-unused-imports -r . --exclude "__init__.py"
 
@@ -24,4 +17,4 @@ format-all:
     uv run ruff check --fix . --exit-zero
 
 run:
-    uv run streamlit run dashboard/main.py
+    uv run streamlit run skills/app/overview.py
