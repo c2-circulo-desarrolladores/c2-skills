@@ -11,7 +11,7 @@ def obtener_encuestas(nombre_encuesta: str) -> list[Path]:
     for carpeta_miembro in MIEMBROS.iterdir():
         encontrado = False
         for archivo in carpeta_miembro.iterdir():
-            if nombre_encuesta.lower() in archivo.name.lower():
+            if nombre_encuesta.lower() in archivo.stem.lower():
                 encuestas_paths.append(archivo)
                 encontrado = True
                 break
@@ -83,7 +83,7 @@ def parsear_encuesta(encuesta_path: Path):
 
 
 def main()-> pl.DataFrame:
-    lista_encuestas = obtener_encuestas("FUNDAMENTALS.md")
+    lista_encuestas = obtener_encuestas("fundamentals")
     lista_dataframes: list[pl.DataFrame] = []
     for encuesta_path in lista_encuestas:
         lista_dataframes.append(parsear_encuesta(encuesta_path))
