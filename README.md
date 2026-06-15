@@ -1,39 +1,39 @@
 # c2_skills
 
-Repositorio para visualizar las habilidades del equipo Open Source y generar un dashboard de perfiles técnicos.
-
-Si eres nuevo, completa tu encuesta de fundamentos siguiendo la plantilla disponible en [encuestas_finales/fundamentals_template.md](encuestas_finales/fundamentals_template.md).
-
-## Índice
-
-- Encuesta
-- Dashboard
+Repositorio para visualizar las habilidades del Círculo Open Source y generar un dashboard de perfiles técnicos.
 
 ## Encuesta
 
-### Cómo responder la encuesta
+### Encuestas disponibles
 
-1. Crea una nueva carpeta dentro de `miembros/` con tu nombre (por ejemplo `miembros/michael`).
-2. Dentro de esa carpeta, crea un archivo llamado `fundamentals.md`.
-3. Copia y adapta la plantilla de [encuestas_finales/fundamentals_template.md](encuestas_finales/fundamentals_template.md) en tu `fundamentals.md`
+- [Encuesta de fundamentos](encuestas_finales/fundamentals.md).
+
+### Cómo responder las encuestas
+
+1. Clona el repositorio.
+2. Crea una nueva carpeta dentro de `miembros/` con tu nombre (por ejemplo `miembros/michael`).
+3. Copia el archivo [templates/fundamentals.md](templates/fundamentals.md) dentro de tu nueva carpeta.
 4. Completa la encuesta según las instrucciones.
+5. Crea una rama con tu nombre.
+6. Sube tus cambios a tu rama y manda tu Pull Request.
 
-### Estructura esperada
+## Dashboard
+### Cómo funciona el dashboard
 
-- Carpeta: `miembros/<nombre>/`
-- Archivo: `fundamentals.md` (basado en la plantilla de `encuestas_finales/`)
-
-## Cómo funciona el dashboard
-
-- El dashboard recoge todos los archivos `fundamentals.md` dentro de `miembros/` y actualiza las vistas del equipo.
+El dashboard utiliza el módulo [encuesta_parser](skills/io/encuesta_parser.py) para recoger todos los archivos `fundamentals.md` dentro de `miembros/` y convertirlos a un DataFrame de Polars, que se utilizará como insumo para los datos.
 - Al agregar o modificar `miembros/<nombre>/fundamentals.md`, el dashboard incorporará los cambios en la próxima carga.
 
-## Correr el dashboard localmente
+### Correr el dashboard localmente
 
-- Requisitos: Python 3.8+, entornos virtuales y dependencias listadas en `pyproject.toml`.
-- Pasos básicos:
+Con uv:
 
 ```bash
 uv sync
 uv run streamlit run skills/app/overview.py
+```
+
+Con just instalado, también puedes correr el dashboard así:
+
+```bash
+just run
 ```
