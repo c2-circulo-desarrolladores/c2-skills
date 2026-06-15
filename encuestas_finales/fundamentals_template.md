@@ -21,38 +21,38 @@ Se le mostrará una serie de conceptos de Python. En una escala del 0 al 3, escr
 
 | Tema | Conceptos | Valor |
 |---|---|---|
-|  | Variables y tipos de datos I | str, int, float |
-|  | Variables y tipos de datos II | list, dict, tuple, set |
-|  | Control de flujo | if/elif/else, for, range, break, continue, pass |
-|  | Funciones básicas | def, parámetros, return, docstrings |
+|  3| Variables y tipos de datos I | str, int, float |
+|  3| Variables y tipos de datos II | list, dict, tuple, set |
+|  3| Control de flujo | if/elif/else, for, range, break, continue, pass |
+|  3| Funciones básicas | def, parámetros, return, docstrings |
 
 ### Paradigmas
 
 | Tema | Conceptos | Valor |
 |---|---|---|
-|  | Programación funcional básica | list/dict comprehension, map, filter, functools |
-|  | Programación funcional avanzada | lambdas, decoradores, args, kwargs |
-|  | Programación orientada a objetos básica | clases, herencia, composición |
-|  | Programación orientada a objetos avanzada | properties, static methods, class methods |
-|  | Programación asíncrona | asyncio, async def, await |
+|  3| Programación funcional básica | list/dict comprehension, map, filter, functools |
+|  3| Programación funcional avanzada | lambdas, decoradores, args, kwargs |
+|  1| Programación orientada a objetos básica | clases, herencia, composición |
+|  1| Programación orientada a objetos avanzada | properties, static methods, class methods |
+|  3| Programación asíncrona | asyncio, async def, await |
 
 ### Buenas Practicas
 
 | Tema | Conceptos | Valor |
 |---|---|---|
-|  | File I/O | lectura/escritura de archivos |
-|  | Manejo de excepciones | try/except/finally, errores |
-|  | Estructuras de datos tipadas | dataclasses, Pydantic BaseModel, Enums |
-|  | Guardar logs | logging en lugar de print |
+|  0| File I/O | lectura/escritura de archivos |
+|  3| Manejo de excepciones | try/except/finally, errores |
+|  3| Estructuras de datos tipadas | dataclasses, Pydantic BaseModel, Enums |
+|  0| Guardar logs | logging en lugar de print |
 
 ### Librerias
 
 | Tema | Conceptos | Valor |
 |---|---|---|
-|  | Módulos y paquetes | import, __init__.py, pyproject.toml |
-|  | Type hints y validación | typing, mypy |
-|  | Virtual environments | uv, venv, dependencias |
-|  | Testing básico | pytest |
+|  3| Módulos y paquetes | import, __init__.py, pyproject.toml |
+|  3| Type hints y validación | typing, mypy |
+|  3| Virtual environments | uv, venv, dependencias |
+|  1| Testing básico | pytest |
 
 ## Open Source
 
@@ -60,10 +60,10 @@ Se le mostrará una serie de conceptos de Python. En una escala del 0 al 3, escr
 
 | Tema | Conceptos | Valor |
 |---|---|---|
-|  | Git workflow | clone, add, commit, push, pull, checkout/switch, merge/rebase |
-|  | Github workflow | fork, branch, pull request, issues |
-|  | Github actions | None |
-|  | README.md | documentación del proyecto |
-|  | Semantic versioning | versionado semántico |
-|  | Code review | revisar y recibir feedback de código |
+|  3| Git workflow | clone, add, commit, push, pull, checkout/switch, merge/rebase |
+|  3| Github workflow | fork, branch, pull request, issues |
+|  3| Github actions | None |
+|  3| README.md | documentación del proyecto |
+|  1| Semantic versioning | versionado semántico |
+|  1| Code review | revisar y recibir feedback de código |
 
