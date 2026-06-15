@@ -11,7 +11,7 @@ def obtener_encuestas(nombre_encuesta: str) -> list[Path]:
     for carpeta_miembro in MIEMBROS.iterdir():
         encontrado = False
         for archivo in carpeta_miembro.iterdir():
-            if archivo.name.lower() == nombre_encuesta.lower():
+            if nombre_encuesta.lower() not in archivo.name.lower():
                 encuestas_paths.append(archivo)
                 encontrado = True
                 break
