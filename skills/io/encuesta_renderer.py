@@ -4,6 +4,7 @@ from typing import Any
 
 import polars as pl
 from jinja2 import Environment, FileSystemLoader
+import yaml
 
 from skills.conf import ENCUESTAS_FINALES, JINJA_TEMPLATES, SOURCES
 
@@ -13,10 +14,7 @@ class JinjaRenderer(ABC):
     template_name: str
     source_schema: dict[str, Any]
 
-    def _read_source(self) -> pl.DataFrame:
-        return pl.read_excel(
-            self.source_file, engine="calamine", schema_overrides=self.source_schema
-        )
+    def _read_source(self) -> pl.DataFrame: ...
 
     @abstractmethod
     def _aggregate(self, df: pl.DataFrame) -> pl.DataFrame: ...
@@ -35,7 +33,7 @@ class JinjaRenderer(ABC):
 
 
 class FundamentalsRenderer(JinjaRenderer):
-    source_file = SOURCES / "fundamentals.xlsx"
+    source_file = SOURCES / "fundamentals.yml"
     source_schema = {
         "tema": pl.String,
         "conceptos": pl.String,
@@ -43,6 +41,25 @@ class FundamentalsRenderer(JinjaRenderer):
         "encuesta": pl.String,
     }
     template_name = "fundamentals.md.jinja2"
+
+    def _read_source(self) -> pl.DataFrame:
+        with open(self.source_file, mode="r", encoding="utf-8") as f:
+            raw = yaml.safe_load(f)
+
+        rows = []
+        for encuesta, secciones in raw["curriculum"].items():
+            for seccion, temas in secciones.items():
+                for item in temas:
+                    rows.append(
+                        {
+                            "encuesta": encuesta,
+                            "seccion": seccion,
+                            "tema": item["tema"],
+                            "conceptos": ", ".join(item["conceptos"]),  # flatten list → str
+                        }
+                    )
+
+        return pl.DataFrame(rows, schema=self.source_schema)
 
     def _aggregate(self, df: pl.DataFrame) -> pl.DataFrame:
         return (
@@ -54,7 +71,7 @@ class FundamentalsRenderer(JinjaRenderer):
 
 
 def main():
-    FundamentalsRenderer().save_rendered(ENCUESTAS_FINALES / "fundamentals_template.md")
+    FundamentalsRenderer().save_rendered(ENCUESTAS_FINALES / "fundamentals.md")
 
 
 if __name__ == "__main__":
