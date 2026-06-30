@@ -19,7 +19,7 @@ Se le mostrará una serie de conceptos de Python. En una escala del 0 al 3, escr
 
 ### Fundamentos
 
-| Tema | Conceptos | Valor |
+| Valor | Tema | Conceptos |
 |---|---|---|
 |  | Variables y tipos de datos I | str, int, float |
 |  | Variables y tipos de datos II | list, dict, tuple, set |
@@ -28,7 +28,7 @@ Se le mostrará una serie de conceptos de Python. En una escala del 0 al 3, escr
 
 ### Paradigmas
 
-| Tema | Conceptos | Valor |
+| Valor | Tema | Conceptos |
 |---|---|---|
 |  | Programación funcional básica | list/dict comprehension, map, filter, functools |
 |  | Programación funcional avanzada | lambdas, decoradores, args, kwargs |
@@ -38,32 +38,37 @@ Se le mostrará una serie de conceptos de Python. En una escala del 0 al 3, escr
 
 ### Buenas Practicas
 
-| Tema | Conceptos | Valor |
+| Valor | Tema | Conceptos |
 |---|---|---|
 |  | File I/O | lectura/escritura de archivos |
 |  | Manejo de excepciones | try/except/finally, errores |
 |  | Estructuras de datos tipadas | dataclasses, Pydantic BaseModel, Enums |
-|  | Guardar logs | logging en lugar de print |
+|  | Logging | logging en lugar de print, levels |
+|  | Type hints y validación | Type hints, typing, tipos genéricos |
+|  | Variables de entorno | .env, dotenv |
 
 ### Librerias
 
-| Tema | Conceptos | Valor |
+| Valor | Tema | Conceptos |
 |---|---|---|
 |  | Módulos y paquetes | import, __init__.py, pyproject.toml |
-|  | Type hints y validación | typing, mypy |
+|  | Docstrings | Docstrings y documentación de APIs |
 |  | Virtual environments | uv, venv, dependencias |
+|  | Publicación de librerías | build, publish, ver en Pypi |
 |  | Testing básico | pytest |
 
 ## Open Source
 
 ### Fundamentals
 
-| Tema | Conceptos | Valor |
+| Valor | Tema | Conceptos |
 |---|---|---|
-|  | Git workflow | clone, add, commit, push, pull, checkout/switch, merge/rebase |
-|  | Github workflow | fork, branch, pull request, issues |
-|  | Github actions | None |
+|  | Semantic versioning | versionado semántico para releases |
+|  | Git workflow básico | clone, add, commit, push |
+|  | Git workflow colaborativo | fetch, pull, switch/checkout, merge/rebase |
+|  | Github workflow | issues, pull request, navegar branches |
+|  | Github actions |  |
 |  | README.md | documentación del proyecto |
-|  | Semantic versioning | versionado semántico |
+|  | changelogs | commitizen |
 |  | Code review | revisar y recibir feedback de código |
 
