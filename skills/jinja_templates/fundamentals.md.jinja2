@@ -21,7 +21,7 @@ Se le mostrará una serie de conceptos de Python. En una escala del 0 al 3, escr
 {% for seccion in encuesta.secciones -%}
 ### {{ seccion.seccion | replace("_", " ") | title }}
 
-| Tema | Conceptos | Valor |
+| Valor | Tema | Conceptos |
 |---|---|---|
 {% for item in seccion.temas -%}
 |  | {{ item.tema }} | {{ item.conceptos }} |
