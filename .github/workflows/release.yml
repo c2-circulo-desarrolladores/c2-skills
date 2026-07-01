@@ -25,7 +25,12 @@ jobs:
       - name: Get changelog
         id: changelog
         run: |
-          uv run cz changelog --dry-run > /tmp/changelog.md
+          PREV_TAG=$(git describe --tags --abbrev=0 "${GITHUB_REF_NAME}^" 2>/dev/null || echo "")
+          if [ -n "$PREV_TAG" ]; then
+            uv run cz changelog --dry-run "$PREV_TAG..${GITHUB_REF_NAME}" > /tmp/changelog.md
+          else
+            uv run cz changelog --dry-run > /tmp/changelog.md
+          fi
           echo "CHANGELOG<<EOF" >> $GITHUB_OUTPUT
           cat /tmp/changelog.md >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
