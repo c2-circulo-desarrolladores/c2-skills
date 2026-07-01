@@ -1,0 +1,91 @@
+curriculum:
+  python:
+    fundamentos:
+      - tema: "Variables y tipos de datos I"
+        conceptos: ["str", "int", "float"]
+
+      - tema: "Variables y tipos de datos II"
+        conceptos: ["list", "dict", "tuple", "set"]
+
+      - tema: "Control de flujo"
+        conceptos: ["if/elif/else", "for", "range", "break", "continue", "pass"]
+
+      - tema: "Funciones básicas"
+        conceptos: ["def", "parámetros", "return", "docstrings"]
+
+    paradigmas:
+      - tema: "Programación funcional básica"
+        conceptos: ["list/dict comprehension", "map", "filter", "functools"]
+
+      - tema: "Programación funcional avanzada"
+        conceptos: ["lambdas", "decoradores", "args", "kwargs"]
+
+      - tema: "Programación orientada a objetos básica"
+        conceptos: ["clases", "herencia", "composición"]
+
+      - tema: "Programación orientada a objetos avanzada"
+        conceptos: ["properties", "static methods", "class methods"]
+
+      - tema: "Programación asíncrona"
+        conceptos: ["asyncio", "async def", "await"]
+
+    buenas_practicas:
+      - tema: "File I/O"
+        conceptos: ["lectura/escritura de archivos"]
+
+      - tema: "Manejo de excepciones"
+        conceptos: ["try/except/finally", "errores"]
+
+      - tema: "Estructuras de datos tipadas"
+        conceptos: ["dataclasses", "Pydantic BaseModel", "Enums"]
+
+      - tema: "Logging"
+        conceptos: ["logging en lugar de print", "levels"]
+
+      - tema: "Type hints y validación"
+        conceptos: ["Type hints", "typing", "tipos genéricos"]
+
+      - tema: "Variables de entorno"
+        conceptos: [".env", "dotenv"]
+
+    librerias:
+      - tema: "Módulos y paquetes"
+        conceptos: ["import", "__init__.py", "pyproject.toml"]
+
+      - tema: "Docstrings"
+        conceptos: ["Docstrings y documentación de APIs"]
+
+      - tema: "Virtual environments"
+        conceptos: ["uv", "venv", "dependencias"]
+
+      - tema: "Publicación de librerías"
+        conceptos: ["build", "publish", "ver en Pypi"]
+
+      - tema: "Testing básico"
+        conceptos: ["pytest"]
+
+  open_source:
+    fundamentals:
+      - tema: "Semantic versioning"
+        conceptos: ["versionado semántico para releases"]
+
+      - tema: "Git workflow básico"
+        conceptos: ["clone", "add", "commit", "push"]
+
+      - tema: "Git workflow colaborativo"
+        conceptos: ["fetch", "pull", "switch/checkout", "merge/rebase"]
+
+      - tema: "Github workflow"
+        conceptos: ["issues", "pull request", "navegar branches"]
+
+      - tema: "Github actions"
+        conceptos: []
+
+      - tema: "README.md"
+        conceptos: ["documentación del proyecto"]
+
+      - tema: "changelogs"
+        conceptos: ["commitizen"]
+
+      - tema: "Code review"
+        conceptos: ["revisar y recibir feedback de código"]

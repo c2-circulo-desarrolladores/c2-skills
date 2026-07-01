@@ -7,11 +7,12 @@ from skills.conf import MIEMBROS
 
 
 def obtener_encuestas(nombre_encuesta: str) -> list[Path]:
+    """Busca archivos de encuestas por nombre en las carpetas de cada miembro"""
     encuestas_paths: list[Path] = []
     for carpeta_miembro in MIEMBROS.iterdir():
         encontrado = False
         for archivo in carpeta_miembro.iterdir():
-            if nombre_encuesta.lower() in archivo.name.lower():
+            if nombre_encuesta.lower() in archivo.stem.lower():
                 encuestas_paths.append(archivo)
                 encontrado = True
                 break
@@ -27,7 +28,8 @@ def obtener_encuestas(nombre_encuesta: str) -> list[Path]:
     return encuestas_paths
 
 
-def parsear_encuesta(encuesta_path: Path):
+def parsear_encuesta(encuesta_path: Path) -> pl.DataFrame:
+    """Lee una encuesta y la convierte a DataFrame de Polars"""
     with open(encuesta_path, mode="r", encoding="utf-8") as f:
         encuesta_str = f.read()
 
@@ -63,7 +65,9 @@ def parsear_encuesta(encuesta_path: Path):
                 raise ValueError(
                     f"Error en la línea {idx} de {encuesta_path}: No se colocó como valor un número del 0-3\nLínea: {linea}"
                 )
-            cuadricula.append((nivel_0, nivel_1, nivel_2, tema, conceptos, int(valor_limpio)))
+            cuadricula.append(
+                (nivel_0, nivel_1, nivel_2, tema, conceptos, int(valor_limpio))
+            )
         else:
             raise ValueError(
                 f"Error en la línea {idx} de {encuesta_path}: No cumple ningún patrón\nLínea: {linea}",
@@ -82,8 +86,9 @@ def parsear_encuesta(encuesta_path: Path):
     )
 
 
-def main()-> pl.DataFrame:
-    lista_encuestas = obtener_encuestas("FUNDAMENTALS.md")
+def main() -> pl.DataFrame:
+    """Parsea todas las encuestas dentro de la carpeta 'miembros'"""
+    lista_encuestas = obtener_encuestas("fundamentals")
     lista_dataframes: list[pl.DataFrame] = []
     for encuesta_path in lista_encuestas:
         lista_dataframes.append(parsear_encuesta(encuesta_path))
