@@ -15,6 +15,7 @@ dependencies = [
 
 [dependency-groups]
 dev = [
+    "commitizen>=4.16.4",
     "git-cliff>=2.13.1",
     "ruff>=0.15.9",
 ]
