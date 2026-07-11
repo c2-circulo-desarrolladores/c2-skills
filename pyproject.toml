@@ -34,3 +34,4 @@ version_provider = "uv"
 
 [tool.ruff.lint]
 select = ["F", "I", "E"]
+ignore = ["E501"]
