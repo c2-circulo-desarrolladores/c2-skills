@@ -1,27 +1,13 @@
 import plotly.express as px
 import polars as pl
 import streamlit as st
-from skills.io import encuesta_parser
-from enum import StrEnum
 
-class C2Colors(StrEnum):
-    RED = "#ac001d"
+from .colors import C2Colors
 
-@st.cache_data
-def load_fundamentals():
-    return encuesta_parser.main()
-
-FUNDAMENTALS = load_fundamentals()
-
-def seleccionar_y_filtrar(
-    df: pl.DataFrame, columna: str, label: str, key: str
-) -> pl.DataFrame:
-    opciones = df.select(pl.col(columna).unique()).to_series().sort().to_list()
-    seleccion = st.selectbox(label, opciones, format_func=str.capitalize, key=key)
-    return df.filter(pl.col(columna) == seleccion)
 
 def create_card(texto: str, metric: str | int | float):
-    st.markdown(f"""
+    st.markdown(
+        f"""
         <div style="
             background: linear-gradient(135deg, #ac001d 0%, #5a0010 100%);
             border-radius: 12px;
@@ -33,11 +19,15 @@ def create_card(texto: str, metric: str | int | float):
             <div style="font-size: 14px; opacity: 0.9; letter-spacing: 1px;">{texto}</div>
             <div style="font-size: 48px; font-weight: bold;">{metric}</div>
         </div>
-    """, unsafe_allow_html=True)
+    """,
+        unsafe_allow_html=True,
+    )
 
+
+# TODO: Separate this logic
 def create_bar_chart(df: pl.DataFrame, titulo: str, idx: int):
     fig = px.bar(
-        df.filter(pl.col("conceptos") == titulo),
+        df,
         x="valor",
         y="seccion",
         title=f"{idx + 1}. {titulo}",
@@ -50,7 +40,10 @@ def create_bar_chart(df: pl.DataFrame, titulo: str, idx: int):
         xaxis_range=[0, 3],
         margin=dict(l=15, r=10, t=50, b=10),
         xaxis=dict(
-            showgrid=True, gridcolor="rgba(255, 255, 255, 0.5)", dtick=1, griddash="dash"
+            showgrid=True,
+            gridcolor="rgba(255, 255, 255, 0.5)",
+            dtick=1,
+            griddash="dash",
         ),
         yaxis=dict(
             showgrid=False,

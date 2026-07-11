@@ -1,6 +1,6 @@
 from pathlib import Path
 
-ROOT = Path(__file__).parent.parent
+ROOT = Path(__file__).parent.parent.parent
 
 MIEMBROS = ROOT / "miembros"
 SOURCES = ROOT / "sources"
