@@ -1,11 +1,9 @@
-
 import polars as pl
 import streamlit as st
 
-from skills.app.shared import create_bar_chart, seleccionar_y_filtrar
-from skills.io import encuesta_parser
-
-fundamentals = encuesta_parser.main()
+from skills.app.shared import FUNDAMENTALS
+from skills.app.shared.figures import create_bar_chart, create_card
+from skills.app.shared.utils import seleccionar_y_filtrar
 
 st.set_page_config(
     page_title="Círculo de Desarrolladores Open Source (C2) - Skills Dashboard",
@@ -14,26 +12,43 @@ st.set_page_config(
 
 st.title("🐍 Círculo de Desarrolladores Open Source (C2) - Skills Dashboard")
 
-# Selector de miembro
+# Filtros
 col1, col2 = st.columns(2)
-with col2:
-    st.markdown("#")
-    st.markdown("#")
 with col1:
-    member_names = [miembro for miembro in fundamentals["miembro"].unique().sort()]
+    # Filtro de miembro
+    member_names = [miembro for miembro in FUNDAMENTALS["miembro"].unique().sort()]
     selected_member = st.selectbox(
         "Selecciona un miembro:", member_names, format_func=str.capitalize
     )
-    # st.header(f"📊 Progreso de {selected_member}")
-
-    # Filtrar datos de miembro seleccionado
-    member_df = fundamentals.filter(pl.col("miembro") == selected_member)
-    # Progress general
-
+    member_df = FUNDAMENTALS.filter(pl.col("miembro") == selected_member)
+    # Filtro de tema
     tema_df = seleccionar_y_filtrar(
-        member_df, "tema", "Selecciona un tema:", f"tema_{selected_member}"
+        member_df,
+        columna="tema",
+        label="Selecciona un tema:",
+        key=f"tema_{selected_member}",
     )
 
+# Tarjeta de progreso
+with col2:
+    progreso = progreso = (
+        str(
+            round(
+                member_df.group_by(["conceptos"], maintain_order=True)
+                .agg(pl.col("valor").mean())
+                .mean()
+                .select(pl.col("valor"))
+                .item()
+                / 3
+                * 100,
+                ndigits=2,
+            )
+        )
+        + "%"
+    )
+    create_card(texto="Progreso", metric=progreso)
+
+with col1:
     concepto_df = tema_df.group_by(
         ["conceptos", "seccion", "valor"], maintain_order=True
     ).agg()
