@@ -27,7 +27,7 @@ def create_card(texto: str, metric: str | int | float):
 # TODO: Separate this logic
 def create_bar_chart(df: pl.DataFrame, titulo: str, idx: int):
     fig = px.bar(
-        df.filter(pl.col("conceptos") == titulo),
+        df,
         x="valor",
         y="seccion",
         title=f"{idx + 1}. {titulo}",
