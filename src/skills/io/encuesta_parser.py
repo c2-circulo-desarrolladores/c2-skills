@@ -61,7 +61,6 @@ def parsear_encuesta(encuesta_path: Path) -> pl.DataFrame:
             else:
                 valor_limpio = int(valor.strip())
             if valor_limpio not in (0, 1, 2, 3):
-                print(valor_limpio)
                 raise ValueError(
                     f"Error en la línea {idx} de {encuesta_path}: No se colocó como valor un número del 0-3\nLínea: {linea}"
                 )

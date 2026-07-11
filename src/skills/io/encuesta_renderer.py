@@ -3,8 +3,8 @@ from pathlib import Path
 from typing import Any
 
 import polars as pl
-from jinja2 import Environment, FileSystemLoader
 import yaml
+from jinja2 import Environment, FileSystemLoader
 
 from skills.conf import ENCUESTAS_FINALES, JINJA_TEMPLATES, SOURCES
 
@@ -55,7 +55,7 @@ class FundamentalsRenderer(JinjaRenderer):
                             "encuesta": encuesta,
                             "seccion": seccion,
                             "tema": item["tema"],
-                            "conceptos": ", ".join(item["conceptos"]),  # flatten list → str
+                            "conceptos": ", ".join(item["conceptos"]),  # flatten to str
                         }
                     )
 

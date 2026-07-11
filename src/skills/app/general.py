@@ -1,13 +1,13 @@
 import streamlit as st
 
 from skills.app.shared import FUNDAMENTALS
-from skills.app.shared.dashboard import (
+from skills.app.shared.figures import create_card
+from skills.app.shared.utils import (
     agrupar_por_tema,
     calcular_progreso,
     render_bar_charts,
+    seleccionar_y_filtrar,
 )
-from skills.app.shared.figures import create_card
-from skills.app.shared.utils import seleccionar_y_filtrar
 
 st.set_page_config(
     page_title="C2 - Skills Dashboard",
@@ -29,7 +29,10 @@ with col1:
 
     # Filtro de encuesta
     tema_df = seleccionar_y_filtrar(
-        FUNDAMENTALS, columna="encuesta", label="Selecciona una encuesta", key="encuesta"
+        FUNDAMENTALS,
+        columna="encuesta",
+        label="Selecciona una encuesta",
+        key="encuesta",
     )
 
 # Bar charts por tema
