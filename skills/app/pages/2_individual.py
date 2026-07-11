@@ -21,12 +21,12 @@ with col1:
         "Selecciona un miembro:", member_names, format_func=str.capitalize
     )
     member_df = FUNDAMENTALS.filter(pl.col("miembro") == selected_member)
-    # Filtro de tema
+    # Filtro de encuesta
     tema_df = seleccionar_y_filtrar(
         member_df,
-        columna="tema",
-        label="Selecciona un tema:",
-        key=f"tema_{selected_member}",
+        columna="encuesta",
+        label="Selecciona una encuesta:",
+        key=f"encuesta_{selected_member}",
     )
 
 # Tarjeta de progreso
@@ -48,17 +48,22 @@ with col2:
     )
     create_card(texto="Progreso", metric=progreso)
 
+#
 with col1:
-    concepto_df = tema_df.group_by(
-        ["conceptos", "seccion", "valor"], maintain_order=True
-    ).agg()
-    conceptos = tema_df["conceptos"].unique(maintain_order=True).to_list()
-    for idx, concepto in enumerate(conceptos):
+    tema_grouped = tema_df.group_by(["tema", "seccion"], maintain_order=True).agg(
+        pl.col("valor").mean()
+    )
+    temas = tema_grouped["tema"].unique(maintain_order=True).to_list()
+
+    # Crear un bar chart por cada tema
+    for idx, tema in enumerate(temas):
         if idx % 2:
             with col2:
-                create_bar_chart(concepto_df, concepto, idx)
+                tema_filtrado = tema_grouped.filter(pl.col("tema") == tema)
+                create_bar_chart(tema_filtrado, tema, idx)
         else:
-            create_bar_chart(concepto_df, concepto, idx)
+            tema_filtrado = tema_grouped.filter(pl.col("tema") == tema)
+            create_bar_chart(tema_filtrado, tema, idx)
 
     #
 #     fund_progress = calculate_progress(member.fundamentals)

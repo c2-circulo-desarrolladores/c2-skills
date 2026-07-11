@@ -46,10 +46,10 @@ with col1:
     tema_grouped = tema_df.group_by(["tema", "seccion"], maintain_order=True).agg(
         pl.col("valor").mean()
     )
-    conceptos = tema_grouped["tema"].unique(maintain_order=True).to_list()
+    temas = tema_grouped["tema"].unique(maintain_order=True).to_list()
 
     # Crear un bar chart por cada concepto
-    for idx, tema in enumerate(conceptos):
+    for idx, tema in enumerate(temas):
         if idx % 2:
             with col2:
                 tema_filtrado = tema_grouped.filter(pl.col("tema") == tema)
