@@ -76,10 +76,10 @@ def parsear_encuesta(encuesta_path: Path) -> pl.DataFrame:
         data=cuadricula,
         schema={
             "miembro": pl.String,
-            "tema": pl.String,
-            "conceptos": pl.String,
-            "seccion": pl.String,
             "encuesta": pl.String,
+            "tema": pl.String,
+            "seccion": pl.String,
+            "conceptos": pl.String,
             "valor": pl.Int8,
         },
         orient="row",
