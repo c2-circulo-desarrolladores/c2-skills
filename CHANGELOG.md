@@ -1,3 +1,27 @@
+## [0.3.0] - 2026-07-12
+
+### 🚀 Features
+
+- **(ranking)** Añadir heatmap de miembros x encuesta ([#29](https://github.com/c2-circulo-desarrolladores/c2-cli/issues/29))
+- **(mentoria)** Añade nueva pestaña de mentoria
+
+### 🐛 Bug Fixes
+
+- **(ranking)** Cambia width=content -> width=stretch
+
+### 🚜 Refactor
+
+- **(ranking)** Se usa funciones para renderizar la pestaña y reorganizar visuales; mueve 'temas débiles' a otra pestaña
+
+### ⚙️ Miscellaneous Tasks
+
+- Actualizar release workflow
+- Fixes cliff.toml to skip version bumps
+- Adds pre-commit as dev dependency
+- Adds .vscode/ to .gitignore
+- Just run executes streamlit on auto-rerun by default
+- Adds pre-commit
+
 ## [0.2.0] - 2026-07-11
 
 ### 🚀 Features
@@ -10,10 +34,6 @@
 - **(io)** Corregir error en el mapeo de columnas
 - **(general)** Corregir nombres de columnas
 - **(individual)** Corregir nombres de columnas
-
-### 💼 Other
-
-- Version 0.1.1 → 0.2.0
 
 ### 🚜 Refactor
 
@@ -40,10 +60,6 @@
 
 - **(encuesta)** Corregir orden de los headers
 - **(encuesta)** Actualizar encuesta final de fundamentos
-
-### 💼 Other
-
-- Version 0.1.0 → 0.1.1
 
 ### 📚 Documentation
 
