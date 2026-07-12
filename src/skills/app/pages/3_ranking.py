@@ -57,7 +57,7 @@ def render_ranking(df: pl.DataFrame) -> None:
         color="nivel",
         color_continuous_scale="RdYlGn",
     )
-    st.plotly_chart(fig_necesidad, width="content")
+    st.plotly_chart(fig_necesidad, width="stretch")
 
 
 def render_heatmap(df: pl.DataFrame) -> None:
@@ -86,7 +86,7 @@ def render_heatmap(df: pl.DataFrame) -> None:
         labels=dict(color="Nivel (%)"),
     )
     fig_heatmap.update_xaxes(side="top")
-    st.plotly_chart(fig_heatmap, width="content")
+    st.plotly_chart(fig_heatmap, width="stretch")
 
 
 def main() -> None:
