@@ -27,8 +27,8 @@ trim = true
 render_always = true
 # An array of regex based postprocessors to modify the changelog.
 postprocessors = [
-    # Replace the placeholder c2-skills with a URL.
-    { pattern = 'c2-skills', replace = "https://github.com/orhun/git-cliff" },
+    # Replace the placeholder <REPO> with a URL.
+    #{ pattern = '<REPO>', replace = "https://github.com/orhun/git-cliff" },
 ]
 # render body even when there are no releases to process
 # render_always = true
@@ -48,8 +48,10 @@ require_conventional = false
 split_commits = false
 # An array of regex based parsers to modify commit messages prior to further processing.
 commit_preprocessors = [
-    # Replace issue numbers with link templates to be updated in `changelog.postprocessors`.
-    { pattern = '\((\w+\s)?#([0-9]+)\)', replace = "([#${2}](c2-skills/issues/${2}))"},
+    # Replace issue numbers with FULL absolute link templates (must be absolute,
+    # not relative — a relative link here gets resolved by GitHub against the
+    # current file path, e.g. /blob/main/, producing a broken URL).
+    { pattern = '\((\w+\s)?#([0-9]+)\)', replace = "([#${2}](https://github.com/c2-circulo-desarrolladores/c2-cli/issues/${2}))"},
     # Check spelling of the commit message using https://github.com/crate-ci/typos.
     # If the spelling is incorrect, it will be fixed automatically.
     #{ pattern = '.*', replace_command = 'typos --write-changes -' },
@@ -59,6 +61,10 @@ protect_breaking_commits = false
 # An array of regex based parsers for extracting data from the commit message.
 # Assigns commits to groups.
 # Optionally sets the commit's scope and can decide to exclude commits from further processing.
+#
+# IMPORTANT: this list is evaluated top-to-bottom, FIRST MATCH WINS.
+# Order must be: specific groups -> specific skips -> generic groups -> catch-all last.
+# The ".*" rule MUST be the very last entry, or every rule after it becomes dead code.
 commit_parsers = [
     { message = "^feat", group = "<!-- 0 -->🚀 Features" },
     { message = "^fix", group = "<!-- 1 -->🐛 Bug Fixes" },
@@ -72,6 +78,8 @@ commit_parsers = [
     { message = "^chore\\(deps.*\\)", skip = true },
     { message = "^chore\\(pr\\)", skip = true },
     { message = "^chore\\(pull\\)", skip = true },
+    { message = "^bump:\\s*version\\s+\\d+\\.\\d+\\.\\d+\\s*→\\s*\\d+\\.\\d+\\.\\d+", skip = true },
+    { message = "^chore:\\s*Release\\s+.*", skip = true },
     { message = "^chore|^ci", group = "<!-- 7 -->⚙️ Miscellaneous Tasks" },
     { body = ".*security", group = "<!-- 8 -->🛡️ Security" },
     { message = "^revert", group = "<!-- 9 -->◀️ Revert" },
@@ -81,10 +89,6 @@ commit_parsers = [
 filter_commits = false
 # Fail on a commit that is not matched by any commit parser.
 fail_on_unmatched_commit = false
-# An array of link parsers for extracting external references, and turning them into URLs, using regex.
-link_parsers = [
-    { pattern = "(?i)closes\\s+#([0-9]+)", href = "https://github.com/c2-circulo-desarrolladores/c2-skills/issues/$1" }
-]
 # Include only the tags that belong to the current branch.
 use_branch_tags = false
 # Order releases topologically instead of chronologically.
