@@ -5,7 +5,9 @@ import streamlit as st
 from skills.app.shared import FUNDAMENTALS
 
 st.title("🎯 Ranking del equipo")
-st.text("Visualiza el rendimiento de cada integrante e identifica oportunidades de mejora.")
+st.text(
+    "Visualiza el rendimiento de cada integrante e identifica oportunidades de mejora."
+)
 
 # Filtros
 col1, col2 = st.columns(2)
@@ -56,6 +58,36 @@ st.plotly_chart(fig_necesidad, use_container_width=True)
 
 st.divider()
 
+# Heatmap: nivel por miembro y encuesta
+st.subheader("🗺️ Mapa de calor: miembro x encuesta")
+heatmap_df = df.group_by(["miembro", "encuesta"], maintain_order=True).agg(
+    (pl.col("valor").mean() / 3 * 100).round(1).alias("nivel")
+)
+pivot_df = heatmap_df.pivot(
+    values="nivel",
+    index="miembro",
+    on="encuesta",
+    aggregate_function="first",
+)
+
+miembros = pivot_df["miembro"].to_list()
+encuestas = [c for c in pivot_df.columns if c != "miembro"]
+matriz = pivot_df.drop("miembro").to_numpy()
+
+fig_heatmap = px.imshow(
+    matriz,
+    x=encuestas,
+    y=miembros,
+    color_continuous_scale="RdYlGn",
+    aspect="auto",
+    text_auto=True,
+    labels=dict(color="Nivel (%)"),
+)
+fig_heatmap.update_xaxes(side="top")
+st.plotly_chart(fig_heatmap, use_container_width=True)
+
+st.divider()
+
 # Gap analysis: temas más débiles
 st.subheader("🔻 Temas más débiles del equipo")
 gap_df = (
@@ -74,3 +106,5 @@ fig_gap = px.bar(
     color_continuous_scale="RdYlGn",
 )
 st.plotly_chart(fig_gap, use_container_width=True)
+
+st.divider()
