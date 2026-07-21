@@ -19,7 +19,7 @@ Se le mostrará una serie de conceptos de Python. En una escala del 0 al 3, escr
 
 ### Fundamentos
 
-| Tema | Conceptos | Valor |
+| Valor | Tema | Conceptos |
 |---|---|---|
 | 3 | Variables y tipos de datos I | str, int, float |
 | 2 | Variables y tipos de datos II | list, dict, tuple, set |
@@ -28,7 +28,7 @@ Se le mostrará una serie de conceptos de Python. En una escala del 0 al 3, escr
 
 ### Paradigmas
 
-| Tema | Conceptos | Valor |
+| Valor | Tema | Conceptos |
 |---|---|---|
 | 1 | Programación funcional básica | list/dict comprehension, map, filter, functools |
 | 1 | Programación funcional avanzada | lambdas, decoradores, args, kwargs |
@@ -38,7 +38,7 @@ Se le mostrará una serie de conceptos de Python. En una escala del 0 al 3, escr
 
 ### Buenas Practicas
 
-| Tema | Conceptos | Valor |
+| Valor | Tema | Conceptos |
 |---|---|---|
 | 3 | File I/O | lectura/escritura de archivos |
 | 2 | Manejo de excepciones | try/except/finally, errores |
@@ -47,7 +47,7 @@ Se le mostrará una serie de conceptos de Python. En una escala del 0 al 3, escr
 
 ### Librerias
 
-| Tema | Conceptos | Valor |
+| Valor | Tema | Conceptos |
 |---|---|---|
 | 1 | Módulos y paquetes | import, __init__.py, pyproject.toml |
 | 0 | Type hints y validación | typing, mypy |
@@ -58,7 +58,7 @@ Se le mostrará una serie de conceptos de Python. En una escala del 0 al 3, escr
 
 ### Fundamentals
 
-| Tema | Conceptos | Valor |
+| Valor | Tema | Conceptos |
 |---|---|---|
 | 0 | Git workflow | clone, add, commit, push, pull, checkout/switch, merge/rebase |
 | 0 | Github workflow | fork, branch, pull request, issues |
