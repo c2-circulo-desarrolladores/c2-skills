@@ -3,89 +3,167 @@ curriculum:
     fundamentos:
       - tema: "Variables y tipos de datos I"
         conceptos: ["str", "int", "float"]
+        urgencia: 3
+        necesario_owner: false
 
       - tema: "Variables y tipos de datos II"
         conceptos: ["list", "dict", "tuple", "set"]
+        urgencia: 3
+        necesario_owner: false
 
       - tema: "Control de flujo"
         conceptos: ["if/elif/else", "for", "range", "break", "continue", "pass"]
+        urgencia: 3
+        necesario_owner: false
 
       - tema: "Funciones básicas"
         conceptos: ["def", "parámetros", "return", "docstrings"]
+        urgencia: 3
+        necesario_owner: false
 
     paradigmas:
       - tema: "Programación funcional básica"
         conceptos: ["list/dict comprehension", "map", "filter", "functools"]
+        urgencia: 1
+        necesario_owner: false
 
       - tema: "Programación funcional avanzada"
         conceptos: ["lambdas", "decoradores", "args", "kwargs"]
+        urgencia: 1
+        necesario_owner: false
 
       - tema: "Programación orientada a objetos básica"
         conceptos: ["clases", "herencia", "composición"]
+        urgencia: 2
+        necesario_owner: false
 
       - tema: "Programación orientada a objetos avanzada"
         conceptos: ["properties", "static methods", "class methods"]
+        urgencia: 1
+        necesario_owner: false
 
       - tema: "Programación asíncrona"
         conceptos: ["asyncio", "async def", "await"]
+        urgencia: 1
+        necesario_owner: false
 
     buenas_practicas:
       - tema: "File I/O"
-        conceptos: ["lectura/escritura de archivos"]
+        conceptos: ["lectura/escritura de archivos", "Pathlib", "os"]
+        urgencia: 3
+        necesario_owner: false
 
       - tema: "Manejo de excepciones"
         conceptos: ["try/except/finally", "errores"]
+        urgencia: 2
+        necesario_owner: false
 
       - tema: "Estructuras de datos tipadas"
         conceptos: ["dataclasses", "Pydantic BaseModel", "Enums"]
+        urgencia: 2
+        necesario_owner: false
 
       - tema: "Logging"
         conceptos: ["logging en lugar de print", "levels"]
+        urgencia: 2
+        necesario_owner: false
 
       - tema: "Type hints y validación"
         conceptos: ["Type hints", "typing", "tipos genéricos"]
+        urgencia: 2
+        necesario_owner: true
 
       - tema: "Variables de entorno"
         conceptos: [".env", "dotenv"]
+        urgencia: 2
+        necesario_owner: true
 
     librerias:
       - tema: "Módulos y paquetes"
         conceptos: ["import", "__init__.py", "pyproject.toml"]
+        urgencia: 2
+        necesario_owner: true
 
       - tema: "Docstrings"
         conceptos: ["Docstrings y documentación de APIs"]
+        urgencia: 1
+        necesario_owner: false
 
       - tema: "Virtual environments"
         conceptos: ["uv", "venv", "dependencias"]
+        urgencia: 2
+        necesario_owner: true
 
       - tema: "Publicación de librerías"
         conceptos: ["build", "publish", "ver en Pypi"]
+        urgencia: 1
+        necesario_owner: true
 
       - tema: "Testing básico"
         conceptos: ["pytest"]
+        urgencia: 2
+        necesario_owner: true
+
+      - tema: "Documentación generada"
+        conceptos: ["mkdocs", "sphinx"]
+        urgencia: 1
+        necesario_owner: false
 
   open_source:
     fundamentals:
-      - tema: "Semantic versioning"
-        conceptos: ["versionado semántico para releases"]
+      - tema: "Licencias"
+        conceptos: ["MIT", "Apache 2.0", "GPL", "elegir licencia"]
+        urgencia: 3
+        necesario_owner: true
 
       - tema: "Git workflow básico"
         conceptos: ["clone", "add", "commit", "push"]
-
-      - tema: "Git workflow colaborativo"
-        conceptos: ["fetch", "pull", "switch/checkout", "merge/rebase"]
-
-      - tema: "Github workflow"
-        conceptos: ["issues", "pull request", "navegar branches"]
-
-      - tema: "Github actions"
-        conceptos: []
+        urgencia: 3
+        necesario_owner: true
 
       - tema: "README.md"
         conceptos: ["documentación del proyecto"]
+        urgencia: 3
+        necesario_owner: true
 
-      - tema: "changelogs"
-        conceptos: ["commitizen"]
+    colaboración:
+      - tema: "Git workflow colaborativo"
+        conceptos: ["fetch", "pull", "branch", "switch/checkout", "merge/rebase"]
+        urgencia: 3
+        necesario_owner: true
 
-      - tema: "Code review"
-        conceptos: ["revisar y recibir feedback de código"]
+      - tema: "Github workflow"
+        conceptos: ["issues", "pull request", "review"]
+        urgencia: 3
+        necesario_owner: true
+
+      - tema: "Issues"
+        conceptos: ["etiquetas", "milestones", "tipo", "prioridad", "asignación"]
+        urgencia: 2
+        necesario_owner: true
+
+      - tema: "Conventional commits"
+        conceptos: ["breaking change", "feat", "fix", "chore", "perf", "style", "docs", "refactor"]
+        urgencia: 3
+        necesario_owner: true
+
+    mantenimiento:
+      - tema: "Github actions"
+        conceptos: []
+        urgencia: 2
+        necesario_owner: true
+
+      - tema: "Versionamiento"
+        conceptos: ["versionado semántico para releases"]
+        urgencia: 2
+        necesario_owner: true
+
+      - tema: "Release workflow"
+        conceptos: ["commitizen", "git tag"]
+        urgencia: 1
+        necesario_owner: true
+
+      - tema: "Changelogs"
+        conceptos: ["CHANGELOG.md", "commitizen"]
+        urgencia: 1
+        necesario_owner: true

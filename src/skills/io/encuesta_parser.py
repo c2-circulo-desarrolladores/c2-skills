@@ -6,6 +6,12 @@ import polars as pl
 from skills.conf import MIEMBROS
 
 
+class ParseException(Exception):
+    def __init__(self, encuesta_path: Path, e: Exception):
+        mensaje = f"Error en la encuesta de {encuesta_path.parent.name}: {e}"
+        super().__init__(mensaje)
+
+
 def obtener_encuestas(nombre_encuesta: str) -> list[Path]:
     """Busca archivos de encuestas por nombre en las carpetas de cada miembro"""
     encuestas_paths: list[Path] = []
@@ -41,7 +47,7 @@ def parsear_encuesta(encuesta_path: Path) -> pl.DataFrame:
     for idx, linea in enumerate(encuesta_core.splitlines()):
         linea = linea.strip()
 
-        if not linea or linea in ("| Tema | Conceptos | Valor |", "|---|---|---|"):
+        if not linea or linea in ("| Valor | Tema | Conceptos |", "|---|---|---|"):
             continue
 
         m = re.match(r"^## (.+)$", linea)
@@ -59,7 +65,12 @@ def parsear_encuesta(encuesta_path: Path) -> pl.DataFrame:
             if not valor:
                 valor_limpio = 0
             else:
-                valor_limpio = int(valor.strip())
+                try:
+                    valor_limpio = int(valor.strip())
+                except ValueError:
+                    raise ValueError(
+                        f"Error en la línea {idx} de {encuesta_path}: No se colocó como valor un número \nLínea: {linea}"
+                    )
             if valor_limpio not in (0, 1, 2, 3):
                 raise ValueError(
                     f"Error en la línea {idx} de {encuesta_path}: No se colocó como valor un número del 0-3\nLínea: {linea}"
@@ -90,7 +101,10 @@ def main() -> pl.DataFrame:
     lista_encuestas = obtener_encuestas("fundamentals")
     lista_dataframes: list[pl.DataFrame] = []
     for encuesta_path in lista_encuestas:
-        lista_dataframes.append(parsear_encuesta(encuesta_path))
+        try:
+            lista_dataframes.append(parsear_encuesta(encuesta_path))
+        except Exception as e:
+            raise ParseException(encuesta_path, e)
 
     return pl.concat(lista_dataframes)
 
