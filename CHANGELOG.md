@@ -1,3 +1,18 @@
+## [0.4.0] - 2026-07-21
+
+### 🚀 Features
+
+- **(cuestionario)** Agregar preguntas a encuesta principal
+
+### 🐛 Bug Fixes
+
+- **(io)** Corrije títulos de secciones a parsear; agregar error personalizado
+- **(miembros)** Actualiza títulos de secciones de encuestas
+
+### ⚙️ Miscellaneous Tasks
+
+- Actualiza dependencias dev y agrega pre-commit
+
 ## [0.3.0] - 2026-07-12
 
 ### 🚀 Features
